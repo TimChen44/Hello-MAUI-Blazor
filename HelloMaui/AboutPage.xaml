@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloMaui.AboutPage"
+             Title="AboutPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <StackLayout>
+        <Label Text="Welcome to Blazor Day!"
+               FontSize="28"
+                VerticalOptions="EndAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        <Label Text="Learn .NET MAUI Blazor!"
+                 FontSize="28"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+    </StackLayout>
+</ContentPage>

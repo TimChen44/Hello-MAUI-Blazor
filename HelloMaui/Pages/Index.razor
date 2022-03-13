@@ -111,3 +111,14 @@
         HelloMaui.App.Current.MainPage.DisplayAlert("消息", "预祝Blazor Day成功举办!", "Hoo!");
     }
 }
+
+<hr />
+<h3>导航</h3>
+<button class="btn btn-primary" @onclick="NavigationTo">NavigationTo</button>
+
+@code {
+    void NavigationTo()
+    {
+        HelloMaui.App.Current.MainPage.Navigation.PushAsync(new AboutPage());
+    }
+}
