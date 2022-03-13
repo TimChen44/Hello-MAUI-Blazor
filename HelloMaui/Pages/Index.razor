@@ -24,3 +24,22 @@
     }
 
 }
+
+<hr />
+<h3>设备信息</h3>
+
+<button class="btn btn-primary" @onclick="GetDeviceDisplay">GetDeviceDisplay</button>
+
+<div>Height:@DisplayInfo.Height</div>
+<div>Width:@DisplayInfo.Width</div>
+<div>Rotation:@DisplayInfo.Rotation</div>
+
+@code{
+
+    DisplayInfo DisplayInfo;
+
+    public void GetDeviceDisplay()
+    {
+        DisplayInfo = DeviceDisplay.MainDisplayInfo;
+    }
+}
