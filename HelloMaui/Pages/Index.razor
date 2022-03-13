@@ -1,7 +1,26 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<h3>IO</h3>
 
-Welcome to your new app.
+<input @bind-value="@content" />
+<button class="btn btn-primary" @onclick="Write">Write</button>
+<button class="btn btn-primary" @onclick="Read">Read</button>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div style="word-wrap:break-word">@fileName</div>
+
+@code {
+    string content;
+
+    string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "blazor.txt");
+
+    private void Write()
+    {
+        System.IO.File.WriteAllText(fileName, content);
+    }
+
+    private void Read()
+    {
+        content=System.IO.File.ReadAllText(fileName);
+    }
+
+}
