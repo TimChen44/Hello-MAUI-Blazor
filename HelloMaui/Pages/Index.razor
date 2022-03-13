@@ -43,3 +43,60 @@
         DisplayInfo = DeviceDisplay.MainDisplayInfo;
     }
 }
+
+<hr />
+<h3>照片</h3>
+
+<button class="btn btn-primary" @onclick="PickPhotoAsync">Photo</button>
+<button class="btn btn-primary" @onclick="CapturePhotoAsync">Capture</button>
+<div style="overflow-wrap:break-word">@PhotoPath</div>
+<img src="@ImageData" width="100%" />
+
+@code {
+    string PhotoPath;
+    string ImageData;
+
+    async Task PickPhotoAsync()
+    {
+        try
+        {
+            var photo = await MediaPicker.PickPhotoAsync();
+            await LoadPhoto(photo);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
+        }
+    }
+
+    async Task CapturePhotoAsync()
+    {
+        try
+        {
+            var photo = await MediaPicker.CapturePhotoAsync();
+            await LoadPhoto(photo);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
+        }
+    }
+
+    async Task LoadPhoto(FileResult photo)
+    {
+        if (photo == null)
+        {
+            PhotoPath = "没有文件";
+            return;
+        }
+        using var stream = await photo.OpenReadAsync();
+
+        var photoBytes = new byte[stream.Length];
+        stream.Read(photoBytes);
+        var imagesrc = Convert.ToBase64String(photoBytes);
+        ImageData = string.Format("data:image/jpeg;base64,{0}", imagesrc);
+
+        PhotoPath = photo.FullPath;
+    }
+
+}
