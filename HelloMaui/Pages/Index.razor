@@ -100,3 +100,14 @@
     }
 
 }
+
+<hr />
+<h3>提示</h3>
+<button class="btn btn-primary" @onclick="DisplayAlert">DisplayAlert</button>
+
+@code {
+    void DisplayAlert()
+    {
+        HelloMaui.App.Current.MainPage.DisplayAlert("消息", "预祝Blazor Day成功举办!", "Hoo!");
+    }
+}
